@@ -1,26 +1,47 @@
-let r = 96;
-let g = 81;
-let b = 196;
+let movement = 0
+let y = 0;
+let x;
+let radius = 100;
+let clockwise = true
 
 function setup() {
-  //put setup code here
-  createCanvas(800, 800)
-  //background(123, 34, 58);
+  createCanvas(400, 400);
 }
 
 function draw() {
-  newColor = color(96, 81, 196);
-  //ellipse(mouseX, mouseY, 20, 20);
-  background(255, 0, 0);
-  shapeGroup(0, 0, 0, 255, 0);
-  shapeGroup(100, 100, r, g, b);
-  shapeGroup(200, 200, random (255), random(255), random(255));
+  background(220);
+  fill(137, 173, 137);
+  ellipse(width/2, height/2, 100, 100);
+  orbit(20, 0);
+  orbit(5, 20);
+
 }
 
-function shapeGroup(x, y, red, green, blue){
-  fill(red, green, blue);
-	ellipse(x+200, y+200, 200, 200);
-	ellipse(x+400, y+400, 400, 400);
-	rect(x+400, y+400, 100, 100);
-	//print("myCoolFunction is running");
+
+function orbit(phase, offset){
+  push();
+translate(width/2, height/2);
+if (movement == 359){
+  clockwise = false;
 }
+if (movement == -1){
+  clockwise = true;
+}
+
+  if (clockwise){
+    movement+= 1;
+    //movement = movement % 360;
+}else{
+    movement-= 1;
+    //movement = movement % 360;   
+  }
+  
+  y = sin(radians(movement + offset))* radius;
+  x = cos(radians(movement + offset))* radius;
+  
+  fill(137, 100, 137);
+  ellipse(x, y, phase, phase);
+  print(movement);
+  pop();
+}
+
