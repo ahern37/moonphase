@@ -5,11 +5,11 @@ let radius = 100;
 let clockwise = true
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(1000, 1000);
 }
 
 function draw() {
-  background(220);
+  background(0);
   fill(137, 173, 137);
   ellipse(width/2, height/2, 100, 100);
   orbit(20, 0);
